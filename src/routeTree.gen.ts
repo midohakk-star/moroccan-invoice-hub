@@ -9,38 +9,252 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TvaRouteImport } from './routes/tva'
+import { Route as TurnoverRouteImport } from './routes/turnover'
+import { Route as JournalRouteImport } from './routes/journal'
+import { Route as AgingRouteImport } from './routes/aging'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductsIndexRouteImport } from './routes/products.index'
+import { Route as DocumentsIndexRouteImport } from './routes/documents.index'
+import { Route as ClientsIndexRouteImport } from './routes/clients.index'
+import { Route as SettingsProfileRouteImport } from './routes/settings.profile'
+import { Route as SettingsEntityRouteImport } from './routes/settings.entity'
+import { Route as ProductsNewRouteImport } from './routes/products.new'
+import { Route as DocumentsNewRouteImport } from './routes/documents.new'
+import { Route as DocumentsIdRouteImport } from './routes/documents.$id'
+import { Route as ClientsNewRouteImport } from './routes/clients.new'
+import { Route as ClientsIdRouteImport } from './routes/clients.$id'
 
+const TvaRoute = TvaRouteImport.update({
+  id: '/tva',
+  path: '/tva',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TurnoverRoute = TurnoverRouteImport.update({
+  id: '/turnover',
+  path: '/turnover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgingRoute = AgingRouteImport.update({
+  id: '/aging',
+  path: '/aging',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsIndexRoute = DocumentsIndexRouteImport.update({
+  id: '/documents/',
+  path: '/documents/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientsIndexRoute = ClientsIndexRouteImport.update({
+  id: '/clients/',
+  path: '/clients/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsProfileRoute = SettingsProfileRouteImport.update({
+  id: '/settings/profile',
+  path: '/settings/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsEntityRoute = SettingsEntityRouteImport.update({
+  id: '/settings/entity',
+  path: '/settings/entity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsNewRoute = ProductsNewRouteImport.update({
+  id: '/products/new',
+  path: '/products/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsNewRoute = DocumentsNewRouteImport.update({
+  id: '/documents/new',
+  path: '/documents/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsIdRoute = DocumentsIdRouteImport.update({
+  id: '/documents/$id',
+  path: '/documents/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientsNewRoute = ClientsNewRouteImport.update({
+  id: '/clients/new',
+  path: '/clients/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientsIdRoute = ClientsIdRouteImport.update({
+  id: '/clients/$id',
+  path: '/clients/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aging': typeof AgingRoute
+  '/journal': typeof JournalRoute
+  '/turnover': typeof TurnoverRoute
+  '/tva': typeof TvaRoute
+  '/clients/$id': typeof ClientsIdRoute
+  '/clients/new': typeof ClientsNewRoute
+  '/documents/$id': typeof DocumentsIdRoute
+  '/documents/new': typeof DocumentsNewRoute
+  '/products/new': typeof ProductsNewRoute
+  '/settings/entity': typeof SettingsEntityRoute
+  '/settings/profile': typeof SettingsProfileRoute
+  '/clients/': typeof ClientsIndexRoute
+  '/documents/': typeof DocumentsIndexRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aging': typeof AgingRoute
+  '/journal': typeof JournalRoute
+  '/turnover': typeof TurnoverRoute
+  '/tva': typeof TvaRoute
+  '/clients/$id': typeof ClientsIdRoute
+  '/clients/new': typeof ClientsNewRoute
+  '/documents/$id': typeof DocumentsIdRoute
+  '/documents/new': typeof DocumentsNewRoute
+  '/products/new': typeof ProductsNewRoute
+  '/settings/entity': typeof SettingsEntityRoute
+  '/settings/profile': typeof SettingsProfileRoute
+  '/clients': typeof ClientsIndexRoute
+  '/documents': typeof DocumentsIndexRoute
+  '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aging': typeof AgingRoute
+  '/journal': typeof JournalRoute
+  '/turnover': typeof TurnoverRoute
+  '/tva': typeof TvaRoute
+  '/clients/$id': typeof ClientsIdRoute
+  '/clients/new': typeof ClientsNewRoute
+  '/documents/$id': typeof DocumentsIdRoute
+  '/documents/new': typeof DocumentsNewRoute
+  '/products/new': typeof ProductsNewRoute
+  '/settings/entity': typeof SettingsEntityRoute
+  '/settings/profile': typeof SettingsProfileRoute
+  '/clients/': typeof ClientsIndexRoute
+  '/documents/': typeof DocumentsIndexRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/aging'
+    | '/journal'
+    | '/turnover'
+    | '/tva'
+    | '/clients/$id'
+    | '/clients/new'
+    | '/documents/$id'
+    | '/documents/new'
+    | '/products/new'
+    | '/settings/entity'
+    | '/settings/profile'
+    | '/clients/'
+    | '/documents/'
+    | '/products/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/aging'
+    | '/journal'
+    | '/turnover'
+    | '/tva'
+    | '/clients/$id'
+    | '/clients/new'
+    | '/documents/$id'
+    | '/documents/new'
+    | '/products/new'
+    | '/settings/entity'
+    | '/settings/profile'
+    | '/clients'
+    | '/documents'
+    | '/products'
+  id:
+    | '__root__'
+    | '/'
+    | '/aging'
+    | '/journal'
+    | '/turnover'
+    | '/tva'
+    | '/clients/$id'
+    | '/clients/new'
+    | '/documents/$id'
+    | '/documents/new'
+    | '/products/new'
+    | '/settings/entity'
+    | '/settings/profile'
+    | '/clients/'
+    | '/documents/'
+    | '/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgingRoute: typeof AgingRoute
+  JournalRoute: typeof JournalRoute
+  TurnoverRoute: typeof TurnoverRoute
+  TvaRoute: typeof TvaRoute
+  ClientsIdRoute: typeof ClientsIdRoute
+  ClientsNewRoute: typeof ClientsNewRoute
+  DocumentsIdRoute: typeof DocumentsIdRoute
+  DocumentsNewRoute: typeof DocumentsNewRoute
+  ProductsNewRoute: typeof ProductsNewRoute
+  SettingsEntityRoute: typeof SettingsEntityRoute
+  SettingsProfileRoute: typeof SettingsProfileRoute
+  ClientsIndexRoute: typeof ClientsIndexRoute
+  DocumentsIndexRoute: typeof DocumentsIndexRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tva': {
+      id: '/tva'
+      path: '/tva'
+      fullPath: '/tva'
+      preLoaderRoute: typeof TvaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/turnover': {
+      id: '/turnover'
+      path: '/turnover'
+      fullPath: '/turnover'
+      preLoaderRoute: typeof TurnoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aging': {
+      id: '/aging'
+      path: '/aging'
+      fullPath: '/aging'
+      preLoaderRoute: typeof AgingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +262,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents/': {
+      id: '/documents/'
+      path: '/documents'
+      fullPath: '/documents/'
+      preLoaderRoute: typeof DocumentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clients/': {
+      id: '/clients/'
+      path: '/clients'
+      fullPath: '/clients/'
+      preLoaderRoute: typeof ClientsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings/profile': {
+      id: '/settings/profile'
+      path: '/settings/profile'
+      fullPath: '/settings/profile'
+      preLoaderRoute: typeof SettingsProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings/entity': {
+      id: '/settings/entity'
+      path: '/settings/entity'
+      fullPath: '/settings/entity'
+      preLoaderRoute: typeof SettingsEntityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/new': {
+      id: '/products/new'
+      path: '/products/new'
+      fullPath: '/products/new'
+      preLoaderRoute: typeof ProductsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents/new': {
+      id: '/documents/new'
+      path: '/documents/new'
+      fullPath: '/documents/new'
+      preLoaderRoute: typeof DocumentsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents/$id': {
+      id: '/documents/$id'
+      path: '/documents/$id'
+      fullPath: '/documents/$id'
+      preLoaderRoute: typeof DocumentsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clients/new': {
+      id: '/clients/new'
+      path: '/clients/new'
+      fullPath: '/clients/new'
+      preLoaderRoute: typeof ClientsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clients/$id': {
+      id: '/clients/$id'
+      path: '/clients/$id'
+      fullPath: '/clients/$id'
+      preLoaderRoute: typeof ClientsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgingRoute: AgingRoute,
+  JournalRoute: JournalRoute,
+  TurnoverRoute: TurnoverRoute,
+  TvaRoute: TvaRoute,
+  ClientsIdRoute: ClientsIdRoute,
+  ClientsNewRoute: ClientsNewRoute,
+  DocumentsIdRoute: DocumentsIdRoute,
+  DocumentsNewRoute: DocumentsNewRoute,
+  ProductsNewRoute: ProductsNewRoute,
+  SettingsEntityRoute: SettingsEntityRoute,
+  SettingsProfileRoute: SettingsProfileRoute,
+  ClientsIndexRoute: ClientsIndexRoute,
+  DocumentsIndexRoute: DocumentsIndexRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
