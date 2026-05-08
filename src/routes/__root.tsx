@@ -73,14 +73,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "InvoicePro — Facturation DGI Maroc" },
+      { name: "description", content: "Système de facturation marocain conforme DGI — devis, factures, TVA, retenue à la source." },
+      { name: "author", content: "InvoicePro" },
+      { property: "og:title", content: "InvoicePro — Facturation DGI" },
+      { property: "og:description", content: "SaaS de facturation marocain conforme DGI." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
