@@ -41,9 +41,9 @@ export function PageHeader({
   );
 }
 
-export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function Card({ children, className = "", ...rest }: { children: ReactNode; className?: string } & React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={"bg-card rounded-lg border border-border shadow-card " + className}>
+    <div className={"bg-card rounded-lg border border-border shadow-card " + className} {...rest}>
       {children}
     </div>
   );
