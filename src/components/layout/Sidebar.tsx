@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import {
   LayoutDashboard,
   Users,
@@ -32,6 +32,12 @@ const getNoop = () => ({} as Record<string, string>);
 
 export function Sidebar() {
   const { t, dir } = useI18n();
+  const nav = useNavigate();
+  const logout = async () => {
+    await fetch("/api/v1/logout", { method: "POST" }).catch(() => {});
+    if (typeof window !== "undefined") localStorage.removeItem("token");
+    nav({ to: "/login" });
+  };
   const path = useRouterState({ select: (r) => r.location.pathname });
   const [docsOpen, setDocsOpen] = useState(true);
   const [reportsOpen, setReportsOpen] = useState(true);
@@ -183,8 +189,8 @@ export function Sidebar() {
           <div className="text-sm font-medium truncate">Youssef Amrani</div>
           <div className="text-xs text-sidebar-muted truncate">y.amrani@invoicepro.ma</div>
         </div>
-        <button className="text-sidebar-muted hover:text-white" title={t("logout")}>
-          <LogOut className="h-4 w-4" />
+        <button onClick={logout} className="text-sidebar-muted hover:text-white" title={t("logout")} aria-label={t("logout")}>
+          <LogOut className={`h-4 w-4 ${dir === "rtl" ? "rotate-180" : ""}`} />
         </button>
       </div>
     </aside>
