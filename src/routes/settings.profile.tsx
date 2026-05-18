@@ -47,6 +47,27 @@ function ProfilePage() {
             <Field label={lang === "ar" ? "تأكيد" : "Confirmer"}><Input type="password" /></Field>
           </div>
         </Card>
+        <Card className="p-6">
+          <h3 className="font-semibold mb-2">{lang === "ar" ? "الجلسات" : "Sessions"}</h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            {lang === "ar"
+              ? "تسجيل الخروج من كل المتصفحات والأجهزة المتصلة بحسابك."
+              : "Déconnecter tous les navigateurs et appareils connectés à votre compte."}
+          </p>
+          <button
+            type="button"
+            onClick={async () => {
+              await fetch("/api/v1/logout-all", { method: "POST" }).catch(() => {});
+              if (typeof window !== "undefined") {
+                localStorage.removeItem("token");
+                window.location.href = "/login";
+              }
+            }}
+            className="text-sm font-medium text-danger hover:underline"
+          >
+            {lang === "ar" ? "تسجيل الخروج من جميع الأجهزة" : "Déconnexion de tous les appareils"}
+          </button>
+        </Card>
         <div className="flex justify-end"><Button>{t("save")}</Button></div>
       </form>
     </AppShell>
