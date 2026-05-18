@@ -11,7 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TvaRouteImport } from './routes/tva'
 import { Route as TurnoverRouteImport } from './routes/turnover'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as JournalRouteImport } from './routes/journal'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AgingRouteImport } from './routes/aging'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
@@ -35,9 +39,29 @@ const TurnoverRoute = TurnoverRouteImport.update({
   path: '/turnover',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JournalRoute = JournalRouteImport.update({
   id: '/journal',
   path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AgingRoute = AgingRouteImport.update({
@@ -104,7 +128,11 @@ const ClientsIdRoute = ClientsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aging': typeof AgingRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/turnover': typeof TurnoverRoute
   '/tva': typeof TvaRoute
   '/clients/$id': typeof ClientsIdRoute
@@ -121,7 +149,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aging': typeof AgingRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/turnover': typeof TurnoverRoute
   '/tva': typeof TvaRoute
   '/clients/$id': typeof ClientsIdRoute
@@ -139,7 +171,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/aging': typeof AgingRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/turnover': typeof TurnoverRoute
   '/tva': typeof TvaRoute
   '/clients/$id': typeof ClientsIdRoute
@@ -158,7 +194,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/aging'
+    | '/forgot-password'
     | '/journal'
+    | '/login'
+    | '/register'
+    | '/reset-password'
     | '/turnover'
     | '/tva'
     | '/clients/$id'
@@ -175,7 +215,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/aging'
+    | '/forgot-password'
     | '/journal'
+    | '/login'
+    | '/register'
+    | '/reset-password'
     | '/turnover'
     | '/tva'
     | '/clients/$id'
@@ -192,7 +236,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/aging'
+    | '/forgot-password'
     | '/journal'
+    | '/login'
+    | '/register'
+    | '/reset-password'
     | '/turnover'
     | '/tva'
     | '/clients/$id'
@@ -210,7 +258,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgingRoute: typeof AgingRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   JournalRoute: typeof JournalRoute
+  LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   TurnoverRoute: typeof TurnoverRoute
   TvaRoute: typeof TvaRoute
   ClientsIdRoute: typeof ClientsIdRoute
@@ -241,11 +293,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TurnoverRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/journal': {
       id: '/journal'
       path: '/journal'
       fullPath: '/journal'
       preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aging': {
@@ -338,7 +418,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgingRoute: AgingRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   JournalRoute: JournalRoute,
+  LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   TurnoverRoute: TurnoverRoute,
   TvaRoute: TvaRoute,
   ClientsIdRoute: ClientsIdRoute,
