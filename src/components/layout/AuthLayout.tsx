@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { useI18n } from "@/lib/i18n";
+import { useTheme } from "@/lib/theme";
+import { Moon, Sun } from "lucide-react";
 
 export function AuthLayout({
   title,
@@ -13,26 +15,36 @@ export function AuthLayout({
   footer?: ReactNode;
 }) {
   const { t, lang, setLang, dir } = useI18n();
+  const { theme, toggle: toggleTheme } = useTheme();
   return (
     <div
       dir={dir}
-      className="min-h-screen w-full bg-[#F9FAFB] flex flex-col items-center justify-center px-4 py-10"
+      className="min-h-screen w-full bg-background flex flex-col items-center justify-center px-4 py-10"
     >
-      <div className="absolute top-4 end-4 flex gap-1 text-xs rounded-md border border-border bg-card p-1">
+      <div className="absolute top-4 end-4 flex items-center gap-2">
         <button
-          onClick={() => setLang("fr")}
-          className={`px-2 py-1 rounded ${lang === "fr" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
+          onClick={toggleTheme}
+          aria-label={theme === "dark" ? "Light mode" : "Dark mode"}
+          className="h-8 w-8 rounded-md border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-foreground"
         >
-          FR
+          {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </button>
-        <button
-          onClick={() => setLang("ar")}
-          className={`px-2 py-1 rounded ${lang === "ar" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
-        >
-          AR
-        </button>
+        <div className="flex gap-1 text-xs rounded-md border border-border bg-card p-1">
+          <button
+            onClick={() => setLang("fr")}
+            className={`px-2 py-1 rounded ${lang === "fr" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
+          >
+            FR
+          </button>
+          <button
+            onClick={() => setLang("ar")}
+            className={`px-2 py-1 rounded ${lang === "ar" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
+          >
+            AR
+          </button>
+        </div>
       </div>
-      <div className="w-full max-w-[480px] bg-white rounded-lg shadow-sm border border-border p-8">
+      <div className="w-full max-w-[480px] bg-card rounded-lg shadow-sm border border-border p-8">
         <div className="flex items-center justify-center gap-2 mb-6">
           <div className="relative">
             <span className="text-2xl font-bold tracking-tight text-foreground">

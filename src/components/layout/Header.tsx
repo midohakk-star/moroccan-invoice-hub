@@ -1,9 +1,11 @@
-import { Bell, Search, Languages, ChevronDown, Building2 } from "lucide-react";
+import { Bell, Search, Languages, ChevronDown, Building2, Moon, Sun } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { useTheme } from "@/lib/theme";
 import { Link, useRouterState } from "@tanstack/react-router";
 
 export function Header() {
   const { t, lang, setLang, dir } = useI18n();
+  const { theme, toggle: toggleTheme } = useTheme();
   const path = useRouterState({ select: (r) => r.location.pathname });
 
   const segments = path.split("/").filter(Boolean);
@@ -47,6 +49,14 @@ export function Header() {
         <button className="relative h-9 w-9 rounded-md border border-border hover:bg-secondary flex items-center justify-center">
           <Bell className="h-4 w-4 text-muted-foreground" />
           <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-danger" />
+        </button>
+
+        <button
+          onClick={toggleTheme}
+          aria-label={theme === "dark" ? "Light mode" : "Dark mode"}
+          className="h-9 w-9 rounded-md border border-border hover:bg-secondary flex items-center justify-center"
+        >
+          {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </button>
 
         <button
