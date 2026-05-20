@@ -14,6 +14,7 @@ import { Route as TurnoverRouteImport } from './routes/turnover'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LandingRouteImport } from './routes/landing'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AgingRouteImport } from './routes/aging'
@@ -52,6 +53,11 @@ const RegisterRoute = RegisterRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingRoute = LandingRouteImport.update({
+  id: '/landing',
+  path: '/landing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalRoute = JournalRouteImport.update({
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/aging': typeof AgingRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
+  '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -151,6 +158,7 @@ export interface FileRoutesByTo {
   '/aging': typeof AgingRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
+  '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -173,6 +181,7 @@ export interface FileRoutesById {
   '/aging': typeof AgingRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
+  '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -196,6 +205,7 @@ export interface FileRouteTypes {
     | '/aging'
     | '/forgot-password'
     | '/journal'
+    | '/landing'
     | '/login'
     | '/register'
     | '/reset-password'
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
     | '/aging'
     | '/forgot-password'
     | '/journal'
+    | '/landing'
     | '/login'
     | '/register'
     | '/reset-password'
@@ -238,6 +249,7 @@ export interface FileRouteTypes {
     | '/aging'
     | '/forgot-password'
     | '/journal'
+    | '/landing'
     | '/login'
     | '/register'
     | '/reset-password'
@@ -260,6 +272,7 @@ export interface RootRouteChildren {
   AgingRoute: typeof AgingRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   JournalRoute: typeof JournalRoute
+  LandingRoute: typeof LandingRoute
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
@@ -312,6 +325,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing': {
+      id: '/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/journal': {
@@ -420,6 +440,7 @@ const rootRouteChildren: RootRouteChildren = {
   AgingRoute: AgingRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   JournalRoute: JournalRoute,
+  LandingRoute: LandingRoute,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
   ResetPasswordRoute: ResetPasswordRoute,
@@ -439,3 +460,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
