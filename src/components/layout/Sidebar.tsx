@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
+import { useMobileNav } from "./AppShell";
 
 type NavItem = {
   to?: string;
@@ -32,6 +33,7 @@ const getNoop = () => ({} as Record<string, string>);
 
 export function Sidebar() {
   const { t, dir } = useI18n();
+  const { open, setOpen } = useMobileNav();
   const nav = useNavigate();
   const logout = async () => {
     await fetch("/api/v1/logout", { method: "POST" }).catch(() => {});
@@ -64,13 +66,31 @@ export function Sidebar() {
       />
     ) : null;
 
+  const sideClosed = dir === "rtl" ? "translate-x-full" : "-translate-x-full";
+
   return (
-    <aside
-      className={
-        "fixed top-0 bottom-0 w-[260px] bg-sidebar text-sidebar-foreground flex flex-col z-30 " +
-        (dir === "rtl" ? "right-0 border-l border-sidebar-border" : "left-0 border-r border-sidebar-border")
-      }
-    >
+    <>
+      {/* Mobile overlay */}
+      <div
+        onClick={() => setOpen(false)}
+        className={
+          "lg:hidden fixed inset-0 bg-black/50 z-20 transition-opacity " +
+          (open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")
+        }
+      />
+      <aside
+        onClick={(e) => {
+          // Close after nav link click on mobile
+          const target = e.target as HTMLElement;
+          if (target.closest("a")) setOpen(false);
+        }}
+        className={
+          "fixed top-0 bottom-0 w-[260px] bg-sidebar text-sidebar-foreground flex flex-col z-30 transition-transform duration-200 " +
+          (dir === "rtl" ? "right-0 border-l border-sidebar-border" : "left-0 border-r border-sidebar-border") +
+          " lg:translate-x-0 " +
+          (open ? "translate-x-0" : sideClosed)
+        }
+      >
       {/* Logo */}
       <div className="h-16 flex items-center gap-2 px-5 border-b border-sidebar-border">
         <div className="relative">
@@ -194,5 +214,6 @@ export function Sidebar() {
         </button>
       </div>
     </aside>
+    </>
   );
 }
