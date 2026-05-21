@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
+import { useMobileNav } from "./AppShell";
 
 type NavItem = {
   to?: string;
