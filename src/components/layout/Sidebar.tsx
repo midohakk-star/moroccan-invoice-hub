@@ -214,5 +214,6 @@ export function Sidebar() {
         </button>
       </div>
     </aside>
+    </>
   );
 }
