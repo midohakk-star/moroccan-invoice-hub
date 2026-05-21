@@ -78,9 +78,9 @@ export function Header() {
           {lang === "fr" ? "FR" : "AR"}
         </button>
 
-        <button className="h-9 px-3 rounded-md border border-border hover:bg-secondary flex items-center gap-2 text-sm font-medium">
+        <button className="hidden sm:flex h-9 px-3 rounded-md border border-border hover:bg-secondary items-center gap-2 text-sm font-medium">
           <Building2 className="h-4 w-4 text-primary" />
-          <span>SARL Atlas Trade</span>
+          <span className="hidden md:inline truncate max-w-[140px]">SARL Atlas Trade</span>
           <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
       </div>
