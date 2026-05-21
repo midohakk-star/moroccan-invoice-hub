@@ -1,6 +1,7 @@
-import { Bell, Search, Languages, ChevronDown, Building2, Moon, Sun } from "lucide-react";
+import { Bell, Search, Languages, ChevronDown, Building2, Moon, Sun, Menu } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useTheme } from "@/lib/theme";
+import { useMobileNav } from "./AppShell";
 import { Link, useRouterState } from "@tanstack/react-router";
 
 export function Header() {
