@@ -17,9 +17,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <Header />
         <main
           className={
-            "pt-16 min-h-screen lg:" +
-            (dir === "rtl" ? "pr-[260px]" : "pl-[260px]") +
-            " " +
+            "pt-16 min-h-screen " +
             (dir === "rtl" ? "lg:pr-[260px]" : "lg:pl-[260px]")
           }
         >
