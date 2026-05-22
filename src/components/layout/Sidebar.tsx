@@ -18,6 +18,7 @@ import {
   TrendingUp,
   UserCog,
   Building2,
+  BookOpen as DocsIcon,
 } from "lucide-react";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
@@ -198,6 +199,15 @@ export function Sidebar() {
             </Link>
           </div>
         )}
+
+        {/* Documentation (last item) */}
+        <div className="pt-3 mt-3 border-t border-sidebar-border">
+          <Link to="/docs" className={linkClass(isActive("/docs"))}>
+            <ActiveBar show={isActive("/docs")} />
+            <DocsIcon className="h-4 w-4" />
+            <span>{t("docs")}</span>
+          </Link>
+        </div>
       </nav>
 
       {/* User */}

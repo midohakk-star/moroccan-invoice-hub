@@ -24,6 +24,7 @@ export const T: Dict = {
   profile: { fr: "Profil utilisateur", ar: "الملف الشخصي" },
   entity: { fr: "Entité", ar: "الكيان" },
   logout: { fr: "Déconnexion", ar: "تسجيل الخروج" },
+  docs: { fr: "Documentation", ar: "التوثيق" },
   // Common
   search: { fr: "Rechercher...", ar: "بحث..." },
   new: { fr: "Nouveau", ar: "جديد" },
